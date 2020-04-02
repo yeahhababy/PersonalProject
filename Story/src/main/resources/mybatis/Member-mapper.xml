@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="member">
+
+	<select id ="selectList" resultType="MemeberDto">
+		SELECT * FROM MEMBERBOARD ORDER BY MEMBER_CODE DESC;	
+	</select>
+	
+	<select id ="selectOne" parameterType="int" resultType="MemberDto">
+		SELECT MEMBER_NAME, MEMBER_ID, MEMBER_PW, MEMBER_EMAIL, MEMBER_PHONE, MEMBER_ADDR FROM MEMBERBOARD WHERE MEMBER_CODE = #{MEMBER_CODE}
+	</select>
+	
+	<insert id="insert" parameterType="MemberDto">
+		INSERT INTO MEMBERBOARD VALUES(MEMBERSEQ.NEXTVAL, #{MEMBER_NAME},#{MEMBER_ID},#{MEMBER_PW},#{MEMBER_EMAIL},#{MEMBER_PHONE},#{MEMBER_ADDR})
+	</insert>
+</mapper>
